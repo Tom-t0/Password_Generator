@@ -19,7 +19,7 @@ class PasswordGenerator:
         self.kana_to_jis_key = KANA_TO_JIS_KEY
         self.consonants  = CONSONANTS
         self.vowels_map = VOWELS_MAP
-        self.charst = CHARSET
+        self.charset = CHARSET
     
     def phase1_lower(self,text):
         text = text.lower()
@@ -168,7 +168,7 @@ class PasswordGenerator:
         p1 = self.phase1_lower(keyword)
         p2 = self.phase2_jis_to_kana(p1)
         p3 = self.phase3_kana_to_romaji(p2)
-        p3_5 = self.phase3_5_modulo_transform(p3)
+        p3_5 = self.phase3_5_modulo_transform(p3, private_key)
         p4 = self.phase4_shift(p3_5, private_key)
         p5 = self.phase5_split_blocks(p4, private_key)
         p6 = self.phase6_scramble(p5)
