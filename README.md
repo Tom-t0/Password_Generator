@@ -5,8 +5,8 @@ Furthermore, I noticed that the dual nature of the Japanese writing system (Hira
 
 ## Algorithm Logic (Step-by-Step)
 Example Settings:<br>
-Key: 325 <br>
-Input: Apple
+Input: Apple <br>
+Key: 325
 
 ### Phase 1: Lowercase Conversion
 Convert the input string to lowercase.
@@ -17,15 +17,14 @@ Convert the English characters to Japanese Kana based on the JIS keyboard layout
 ### Phase 3: Romaji Conversion
 Convert the Kana string into Romaji (Romanized Japanese).
 
-### Phase 3.5 : Modular culculation
-Applies non-linear modular transformation using a prime modulus (67) to destroy statistical patterns.
+### Phase 3.5 : Modular Transformation (v.1.1)
+Applies non-linear modular transformation using a prime modulus (67) to destroy statistical patterns and maximize the avalanche effect.
 
 ### Phase 4: Shift Operation
-Calculate the sum of the Private Key digits.<br>
-If the sum is Odd: Right shift the string by the sum amount.<br>
-If the sum is Even: Left shift the string by the sum amount.
+Calculate the sum of the Private Key digits.
 
-Expected Result: itoisunin ikanito
+- Odd Sum: Right shift the string.</br>
+- Even Sum: Left shift the string.</br>
 
 ### Phase 5: Block Splitting
 Split the string into blocks based on the sequence of numbers in the Private Key.
@@ -42,14 +41,18 @@ Vowel Selection: The vowel is determined by the block length (1:A, 2:I, 3:U, 4:E
 
 
 ### Phase 8: Mixed Kana Conversion
-Convert the string back to Kana.<br>
-Rule: Standard characters become Hiragana. Uppercase characters (inserted in Phase 7) become Katakana.<br>
+Convert the string back to Kana.
+
+- Standard characters: Become Hiragana.</br>
+- Uppercase characters (from Phase 7): Become Katakana.
 
 
 ### Phase 9: Final JIS Encode
 Convert the mixed Kana string back to ASCII characters using the JIS layout.<br>
-Rule: Katakana characters are output as the symbol/character produced when holding the Shift key.<br>
+- Rule: Katakana characters are output as the symbol/character produced when holding the Shift key.<br>
 
 #### V1.1
-Add phase 3.5
-Prime Modulus Strategy (Collision Resistance)In affine transformations ($Ax + B \pmod N$), if the modulus $N$ is a composite number (e.g., 62 for standard alphanumerics), collisions occur when multiplier $A$ shares a common factor with $N$.By setting $N=67$, we ensure that $gcd(A, N) = 1$ for almost all private keys. This mathematically guarantees a bijective mapping (one-to-one correspondence), preventing entropy loss during the transformation process.Injection-Safe Character SetTo reach the prime number 67, specific symbols (!, #, $, %, &) were carefully selected.High-risk characters such as quotes (', ") which cause SQL injection, and brackets (<, >) which cause XSS, are intentionally excluded. This ensures the generated passwords are system-safe and portable across different platforms.
+1. Prime Modulus Strategy (Collision Resistance)In affine transformations (Ax + B (mod N), if the modulus $N$ is a composite number (e.g., 62 for standard alphanumerics), collisions occur when multiplier A shares a common factor with N.</br>
+By setting N=67 (a Prime Number), we ensure that (A, N) = 1 for almost all private keys. This mathematically guarantees a bijective mapping (one-to-one correspondence), preventing entropy loss during the transformation process.
+1. Injection-Safe Character SetTo reach the prime number 67, specific symbols (!, #, $, %, &) were carefully selected.</br>
+High-risk characters such as quotes (', "), which cause SQL injection, and brackets (<, >), which cause XSS, are intentionally excluded. This ensures the generated passwords are system-safe and portable across different platforms.
