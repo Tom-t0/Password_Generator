@@ -110,6 +110,9 @@ class PasswordGenerator:
             is_last = (i == len(text) - 1)
             if is_curr_cons and (is_next_cons or is_last):
                 insert_vowel = self.vowels_map.get(current_key_val % 5, 'O')
+                check_sum = current_pos_counter + current_key_val
+                if check_sum % 2 != 0:
+                    insert_vowel = insert_vowel.lower()
                 result += insert_vowel
             current_pos_counter += 1
             if current_pos_counter >= current_block_len:
@@ -165,16 +168,17 @@ class PasswordGenerator:
             return "Please Enter Private Key!"
         elif len(str(private_key[0])) < 3:
             return "Private Key is too short!"
-        p1 = self.phase1_lower(keyword)
-        p2 = self.phase2_jis_to_kana(p1)
-        p3 = self.phase3_kana_to_romaji(p2)
-        p3_5 = self.phase3_5_modulo_transform(p3, private_key)
-        p4 = self.phase4_shift(p3_5, private_key)
-        p5 = self.phase5_split_blocks(p4, private_key)
-        p6 = self.phase6_scramble(p5)
-        p7 = self.phase7_insert_vowels(p6, private_key)
-        p8 = self.phase8_mixed_kana_conversion(p7)
-        final_password = self.phase9_final_encode(p8)
+        for i in range(10000):
+            p1 = self.phase1_lower(keyword)
+            p2 = self.phase2_jis_to_kana(p1)
+            p3 = self.phase3_kana_to_romaji(p2)
+            p3_5 = self.phase3_5_modulo_transform(p3, private_key)
+            p4 = self.phase4_shift(p3_5, private_key)
+            p5 = self.phase5_split_blocks(p4, private_key)
+            p6 = self.phase6_scramble(p5)
+            p7 = self.phase7_insert_vowels(p6, private_key)
+            p8 = self.phase8_mixed_kana_conversion(p7)
+            final_password = self.phase9_final_encode(p8)
         return final_password
 
 
