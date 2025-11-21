@@ -23,6 +23,9 @@ Convert the Kana string into Romaji (Romanized Japanese).
 
 Expected Result: kanitoitoisunini (Note: The result depends on the specific internal conversion table used.)
 
+### Phase 3.5 : Modular culculation
+Applies non-linear modular transformation using a prime modulus (67) to destroy statistical patterns.
+
 ### Phase 4: Shift Operation
 Calculate the sum of the Private Key digits.<br>
 If the sum is Odd: Right shift the string by the sum amount.<br>
@@ -58,3 +61,7 @@ Convert the mixed Kana string back to ASCII characters using the JIS layout.<br>
 Rule: Katakana characters are output as the symbol/character produced when holding the Shift key.<br>
 
 Final Password: h$ce5C;ese
+
+#### V1.1
+Add phase 3.5
+Prime Modulus Strategy (Collision Resistance)In affine transformations ($Ax + B \pmod N$), if the modulus $N$ is a composite number (e.g., 62 for standard alphanumerics), collisions occur when multiplier $A$ shares a common factor with $N$.By setting $N=67$, we ensure that $gcd(A, N) = 1$ for almost all private keys. This mathematically guarantees a bijective mapping (one-to-one correspondence), preventing entropy loss during the transformation process.Injection-Safe Character SetTo reach the prime number 67, specific symbols (!, #, $, %, &) were carefully selected.High-risk characters such as quotes (', ") which cause SQL injection, and brackets (<, >) which cause XSS, are intentionally excluded. This ensures the generated passwords are system-safe and portable across different platforms.
