@@ -34,3 +34,5 @@ KANA_TO_JIS_KEY = {v: k for k, v in JIS_KEY_TO_KANA.items()}
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
 VOWELS_MAP = {1: 'A', 2: 'I', 3: 'U', 4: 'E', 0: 'O'}
+
+CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&"

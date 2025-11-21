@@ -6,7 +6,8 @@ from constants import (
     ROMAJI_TO_KANA_TABLE,
     KANA_TO_JIS_KEY,
     CONSONANTS,
-    VOWELS_MAP
+    VOWELS_MAP,
+    CHARSET
 )
 
 class PasswordGenerator:
@@ -18,6 +19,7 @@ class PasswordGenerator:
         self.kana_to_jis_key = KANA_TO_JIS_KEY
         self.consonants  = CONSONANTS
         self.vowels_map = VOWELS_MAP
+        self.charst = CHARSET
     
     def phase1_lower(self,text):
         text = text.lower()
@@ -35,6 +37,19 @@ class PasswordGenerator:
             result += self.kana_to_romaji_table.get(letter,letter)
         return result
     
+    def phase3_5_modulo_transform(self, text, key_list):
+        result = ""
+        mod_n = len(self.charset)
+        for i, word in enumerate(text):
+            if word in self.charset:
+                char_code = self.charset.index(word)
+                k = key_list[i % len(key_list)]
+                new_code = (char_code * k + k + i) % mod_n
+                result += self.charset[new_code]
+            else:
+                result += word
+                
+        return result
     def phase4_shift(self, text, key_list):
         shift_amount = sum(key_list)
         n = shift_amount % len(text)
@@ -153,21 +168,21 @@ class PasswordGenerator:
         p1 = self.phase1_lower(keyword)
         p2 = self.phase2_jis_to_kana(p1)
         p3 = self.phase3_kana_to_romaji(p2)
-        p4 = self.phase4_shift(p3, private_key)
+        p3_5 = self.phase3_5_modulo_transform(p3)
+        p4 = self.phase4_shift(p3_5, private_key)
         p5 = self.phase5_split_blocks(p4, private_key)
         p6 = self.phase6_scramble(p5)
         p7 = self.phase7_insert_vowels(p6, private_key)
         p8 = self.phase8_mixed_kana_conversion(p7)
         final_password = self.phase9_final_encode(p8)
         return final_password
-    
-    # logic.py の一番下
+
 
 if __name__ == "__main__":
     generator = PasswordGenerator()
     print("--- JIS Password Generator ---")
-    keyword = input("Please Enter Keyword: ")
-    key_input = input("Enter Private Key: ")
+    keyword = input("Please Enter Keyword (Have to be string and more than 5 words): ")
+    key_input = input("Enter Private Key (Have to be int and more than 3 degits): ")
     try:
         private_key = [int(k) for k in key_input.split(',') if k.strip().isdigit()]
         print(f"\nInput: {keyword}")
