@@ -11,17 +11,11 @@ Input: Apple
 ### Phase 1: Lowercase Conversion
 Convert the input string to lowercase.
 
-Expected Result: apple
-
 ### Phase 2: JIS Kana Conversion
 Convert the English characters to Japanese Kana based on the JIS keyboard layout mapping.
 
-Expected Result: ちせせりい (chi-se-se-ri-i)
-
 ### Phase 3: Romaji Conversion
 Convert the Kana string into Romaji (Romanized Japanese).
-
-Expected Result: kanitoitoisunini (Note: The result depends on the specific internal conversion table used.)
 
 ### Phase 3.5 : Modular culculation
 Applies non-linear modular transformation using a prime modulus (67) to destroy statistical patterns.
@@ -41,26 +35,20 @@ Scramble the characters within each block. The order of assignment starts from t
 Example for block size [3, 2, 4]: The filling order would be indices 4, 1, 7 | 5, 2 | 9, 6, 3, 8.<br>
 If the string is long, repeat this pattern. If the string ends mid-way, update the block length.<br>
 
-Expected Result: iin|st|nuoi|nio|ik|ta
-
 ### Phase 7: Vowel Insertion
 Insert uppercase vowels to break up consonant clusters.<br>
 Rule: If consonants are consecutive OR if the block ends with a consonant, insert a specific vowel immediately after.<br>
 Vowel Selection: The vowel is determined by the block length (1:A, 2:I, 3:U, 4:E, 5:O).<br>
 
-Expected Result: iinU|sItI|nUuoi|nUio|ikI|ta
 
 ### Phase 8: Mixed Kana Conversion
 Convert the string back to Kana.<br>
 Rule: Standard characters become Hiragana. Uppercase characters (inserted in Phase 7) become Katakana.<br>
 
-Expected Result: いいヌシチヌうおいヌいおいキた
 
 ### Phase 9: Final JIS Encode
 Convert the mixed Kana string back to ASCII characters using the JIS layout.<br>
 Rule: Katakana characters are output as the symbol/character produced when holding the Shift key.<br>
-
-Final Password: h$ce5C;ese
 
 #### V1.1
 Add phase 3.5
