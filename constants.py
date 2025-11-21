@@ -6,7 +6,7 @@ JIS_KEY_TO_KANA = {
         }
 
 KANA_TO_SHIFT_KEY = {
-            'ヌ': '!', 'フ': '"', 'ア': '#', 'ウ': '$', 'エ': '%', 'オ': '&', 'ヤ': "'", 'ユ': '(', 'ヨ': ')', 'ワ': '0', # 数字キーのShift
+            'ヌ': '!', 'フ': '"', 'ア': '#', 'ウ': '$', 'エ': '%', 'オ': '&', 'ヤ': "'", 'ユ': '(', 'ヨ': ')', 'ワ': '0',
             'ホ': '=', 'ヘ': '~', 'ー': '|',
             'チ': 'A', 'ト': 'S', 'シ': 'D', 'ハ': 'F', 'キ': 'G', 'ク': 'H', 'マ': 'J', 'ノ': 'K', 'リ': 'L', 'レ': '+', 'ケ': '*', 'ム': '}',
             'タ': 'Q', 'テ': 'W', 'イ': 'E', 'ス': 'R', 'カ': 'T', 'ン': 'Y', 'ナ': 'U', 'ニ': 'I', 'ラ': 'O', 'セ': 'P', '濁': '`', '半': '{',
@@ -35,4 +35,4 @@ CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
 VOWELS_MAP = {1: 'A', 2: 'I', 3: 'U', 4: 'E', 0: 'O'}
 
-CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&"
+CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$-_"
