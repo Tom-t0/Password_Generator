@@ -168,7 +168,7 @@ class PasswordGenerator:
             return "Please Enter Private Key!"
         elif len(str(private_key[0])) < 3:
             return "Private Key is too short!"
-        for i in range(10000):
+        for i in range(10):
             p1 = self.phase1_lower(keyword)
             p2 = self.phase2_jis_to_kana(p1)
             p3 = self.phase3_kana_to_romaji(p2)
@@ -178,8 +178,8 @@ class PasswordGenerator:
             p6 = self.phase6_scramble(p5)
             p7 = self.phase7_insert_vowels(p6, private_key)
             p8 = self.phase8_mixed_kana_conversion(p7)
-            final_password = self.phase9_final_encode(p8)
-        return final_password
+            password = self.phase9_final_encode(p8)
+        return password
 
 
 if __name__ == "__main__":
