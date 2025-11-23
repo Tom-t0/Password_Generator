@@ -61,7 +61,7 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
     });
 
     // ★Windowsアプリとして動かす場合は localhost (127.0.0.1) でOK
-    final url = Uri.parse('http://10.84.147.119/api/generate/');
+    final url = Uri.parse('https://password-generator-fe5o.onrender.com');
 
     try {
       final response = await http.post(
