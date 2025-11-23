@@ -1,5 +1,5 @@
 import math
-from constants import (
+from .constants import (
     JIS_KEY_TO_KANA,
     KANA_TO_SHIFT_KEY,
     KANA_TO_ROMAJI_TABLE,
