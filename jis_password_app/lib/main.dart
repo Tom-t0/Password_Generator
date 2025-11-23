@@ -33,7 +33,7 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
   final TextEditingController _keywordController = TextEditingController();
   final TextEditingController _keyController = TextEditingController();
   
-  String _resultMessage = "キーワードと秘密鍵を入力して生成";
+  String _resultMessage = "Generate a password";
   bool _isLoading = false;
 
   Future<void> _generatePassword() async {
