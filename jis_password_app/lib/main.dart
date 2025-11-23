@@ -41,7 +41,7 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
     final keyString = _keyController.text;
 
     if (keyword.isEmpty || keyString.isEmpty) {
-      setState(() => _resultMessage = "入力が空です");
+      setState(() => _resultMessage = "Please enter both keyword and private key");
       return;
     }
 
@@ -51,13 +51,13 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
           .where((s) => s.isNotEmpty).map((s) => int.parse(s)).toList();
       if (keyList.isEmpty) throw Exception();
     } catch (e) {
-      setState(() => _resultMessage = "秘密鍵の形式が正しくありません");
+      setState(() => _resultMessage = "Private key must be numbers");
       return;
     }
 
     setState(() {
       _isLoading = true;
-      _resultMessage = "Djangoに問い合わせ中...";
+      _resultMessage = "Generating...";
     });
 
     // ★Windowsアプリとして動かす場合は localhost (127.0.0.1) でOK
@@ -74,10 +74,10 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
         final data = jsonDecode(response.body);
         setState(() => _resultMessage = data['password']);
       } else {
-        setState(() => _resultMessage = "エラー: ${response.statusCode}");
+        setState(() => _resultMessage = "error: ${response.statusCode}");
       }
     } catch (e) {
-      setState(() => _resultMessage = "通信失敗: Djangoは起動していますか？\n$e");
+      setState(() => _resultMessage = "Fail to connect to Django\n$e");
     } finally {
       setState(() => _isLoading = false);
     }
@@ -100,7 +100,7 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
               FilledButton.icon(
                 onPressed: _isLoading ? null : _generatePassword,
                 icon: _isLoading ? const SizedBox.shrink() : const Icon(Icons.vpn_key),
-                label: _isLoading ? const CircularProgressIndicator(color: Colors.white) : const Text('生成する'),
+                label: _isLoading ? const CircularProgressIndicator(color: Colors.white) : const Text('Generate Password'),
                 style: FilledButton.styleFrom(minimumSize: const Size(double.infinity, 50)),
               ),
               const SizedBox(height: 32),
