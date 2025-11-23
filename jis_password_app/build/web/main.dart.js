@@ -73899,7 +73899,7 @@ if(J.cz(l)===0){g=A.dZ(null)
 throw A.h(g)}}catch(a0){m.al(new A.adR(m))
 s=1
 break}m.al(new A.adS(m))
-k=A.h2("https://password-generator-fe5o.onrender.com")
+k=A.h2("https://password-generator-fe5o.onrender.com/api/generate/")
 p=4
 g=t.N
 f=A.aj(["Content-Type","application/json"],g,g)
