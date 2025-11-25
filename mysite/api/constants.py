@@ -36,3 +36,5 @@ CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 VOWELS_MAP = {1: 'A', 2: 'I', 3: 'U', 4: 'E', 0: 'O'}
 
 CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$-_"
+
+SPECIAL_CHARS = ["!",'"',"#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","_","}","~","|","^"]

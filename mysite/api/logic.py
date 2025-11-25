@@ -7,7 +7,8 @@ from .constants import (
     KANA_TO_JIS_KEY,
     CONSONANTS,
     VOWELS_MAP,
-    CHARSET
+    CHARSET,
+    SPECIAL_CHARS
 )
 
 class PasswordGenerator:
@@ -20,6 +21,7 @@ class PasswordGenerator:
         self.consonants  = CONSONANTS
         self.vowels_map = VOWELS_MAP
         self.charset = CHARSET
+        self.special_chars = SPECIAL_CHARS
     
     def phase1_lower(self,text):
         text = text.lower()
@@ -158,16 +160,11 @@ class PasswordGenerator:
             else:
                 result += self.kana_to_jis_key.get(letter, letter)
         return result
+    
+    def phase10_replace_special_chars(self, text):
+        pass
 
     def generate_password(self, keyword, private_key):
-        if not keyword:
-            return "Please Enter Keyword!"
-        elif len(keyword) < 5:
-            return "Keyword is too short!"
-        if not private_key:
-            return "Please Enter Private Key!"
-        elif len(str(private_key[0])) < 3:
-            return "Private Key is too short!"
         p1 = self.phase1_lower(keyword)
         p2 = self.phase2_jis_to_kana(p1)
         p3 = self.phase3_kana_to_romaji(p2)
@@ -177,8 +174,11 @@ class PasswordGenerator:
         p6 = self.phase6_scramble(p5)
         p7 = self.phase7_insert_vowels(p6, private_key)
         p8 = self.phase8_mixed_kana_conversion(p7)
-        password = self.phase9_final_encode(p8)
+        p9 = self.phase9_final_encode(p8)
+        password = self.phase10_replace_special_chars(p9)
         return password
+    
+
 
 
 if __name__ == "__main__":
