@@ -3,6 +3,10 @@
 In the Japanese language, every character is typically associated with a vowel, whereas in English, this is not the case. I realized that by leveraging this fundamental difference, I could generate completely unique strings.<br>
 Furthermore, I noticed that the dual nature of the Japanese writing system (Hiragana and Katakana) could be utilized to easily create strong, complex passwords. By observing the standard JIS keyboard layout, I developed a logic to map Japanese characters back to alphabets and special symbols, forming the core of this algorithm.
 
+## Known Limitations / Security Notice
+This is an experimental proof of concept (PoC) combining linguistic and mathematical approaches; it is not intended as a recommendation for password management in a live operational environment.
+I am aware of the algorithm’s reversibility and design vulnerabilities that depend on the entropy of the initial input.
+
 ## Algorithm Logic (Step-by-Step)
 Example Settings:<br>
 Input: Apple <br>
